@@ -14,6 +14,10 @@ function Table(props) {
     setColumns(columns + 1);
   };
 
+  const clearAll = () => {
+    setColor("transparent");
+  };
+
   const changeColor = (color) => {
     setColor(color);
   };
@@ -34,6 +38,7 @@ function Table(props) {
     <div>
       <button onClick={() => addRow()}>Add Rows</button>
       <button onClick={() => addColumn()}>Add Columns</button>
+      <button onClick={() => clearAll()}>Clear All</button>
       <select onChange={(e) => changeColor(e.target.value)}>
         <option value="transparent">transparent</option>
         <option value="black">black</option>
