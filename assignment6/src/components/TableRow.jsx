@@ -4,9 +4,7 @@ import TableCell from "./TableCell";
 function TableRow(props) {
   let tableColumns = [];
   for (let i = -1; i < props.columns; i++) {
-    tableColumns.push(
-      <TableCell key={i} color={props.color} changeColor={props.changeColor} />
-    );
+    tableColumns.push(<TableCell key={i} color={props.color} />);
   }
   return <tr>{tableColumns}</tr>;
 }

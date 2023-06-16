@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TableCell from "./TableCell";
 import TableRow from "./TableRow";
 
 function Table(props) {
@@ -18,20 +19,20 @@ function Table(props) {
     setColor("transparent");
   };
 
-  const changeColor = (color) => {
-    setColor(color);
+  const fillAll = () => {
+    const cells = document.getElementsByClassName("cell");
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].style.backgroundColor = color;
+    }
+  };
+
+  const handleColorChange = (e) => {
+    setColor(e.target.value);
   };
 
   let table = [];
   for (let i = 0; i < rows; i++) {
-    table.push(
-      <TableRow
-        key={i}
-        columns={columns}
-        color={color}
-        changeColor={changeColor}
-      />
-    );
+    table.push(<TableRow key={i} columns={columns} color={color} />);
   }
 
   return (
@@ -39,8 +40,9 @@ function Table(props) {
       <button onClick={() => addRow()}>Add Rows</button>
       <button onClick={() => addColumn()}>Add Columns</button>
       <button onClick={() => clearAll()}>Clear All</button>
-      <select onChange={(e) => changeColor(e.target.value)}>
-        <option value="transparent">transparent</option>
+      <button onClick={() => fillAll()}>Fill All</button>
+      <select id="color" value={color} onChange={handleColorChange}>
+        <option value="transparent">---</option>
         <option value="black">black</option>
         <option value="yellow">yellow</option>
         <option value="green">green</option>
