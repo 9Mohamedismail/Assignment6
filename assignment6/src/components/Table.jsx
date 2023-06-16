@@ -1,16 +1,32 @@
-import React, {Component} from "react";
+import React, { useState } from "react";
 import TableRow from "./TableRow";
 
-class Table extends Component {
-    constructor(props) {
-        super(props);
-    }
-    state = {  }
-    render() { 
-        return (  
-            <TableRow></TableRow>
-        );
-    }
+function Table(props) {
+  const [rows, setRows] = useState(1);
+  const [columns, setColumns] = useState(1);
+
+  const addRow = () => {
+    setRows(rows + 1);
+  };
+
+  const addColumn = () => {
+    setColumns(columns + 1);
+  };
+
+  let table = [];
+  for (let i = 0; i < rows; i++) {
+    table.push(<TableRow key={i} columns={columns} />);
+  }
+
+  return (
+    <div>
+      <button onClick={() => addRow()}>Add Rows</button>
+      <button onClick={() => addColumn()}>Add Columns</button>
+      <table>
+        <div>{table}</div>
+      </table>
+    </div>
+  );
 }
- 
+
 export default Table;
