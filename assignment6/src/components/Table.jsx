@@ -35,6 +35,7 @@ function Table(props) {
       <button onClick={() => addRow()}>Add Rows</button>
       <button onClick={() => addColumn()}>Add Columns</button>
       <select onChange={(e) => changeColor(e.target.value)}>
+        <option value="transparent">transparent</option>
         <option value="black">black</option>
         <option value="yellow">yellow</option>
         <option value="green">green</option>
