@@ -3,7 +3,7 @@ import TableCell from "./TableCell";
 
 function TableRow(props) {
   let tableColumns = [];
-  for (let i = 0; i < props.columns; i++) {
+  for (let i = -1; i < props.columns; i++) {
     tableColumns.push(<TableCell key={i} />);
   }
   return <tr>{tableColumns}</tr>;

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import TableRow from "./TableRow";
 
 function Table(props) {
-  const [rows, setRows] = useState(1);
-  const [columns, setColumns] = useState(1);
+  const [rows, setRows] = useState(0);
+  const [columns, setColumns] = useState(0);
 
   const addRow = () => {
     setRows(rows + 1);
