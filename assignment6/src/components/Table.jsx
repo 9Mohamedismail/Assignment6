@@ -16,6 +16,16 @@ function Table(props) {
     setColumns(columns + 1);
   };
 
+  const removeRows = () => {
+    if (rows > 0) {
+      setRows(rows - 1); 
+    }
+  }
+
+  const removeColumns = () => {
+      setColumns(columns - 1);
+  }
+
   const clearAll = () => {
     const cells = document.getElementsByClassName("cell");
     for (let i = 0; i < cells.length; i++) {
@@ -62,6 +72,8 @@ function Table(props) {
     <div>
       <button onClick={() => addRow()}>Add Rows</button>
       <button onClick={() => addColumn()}>Add Columns</button>
+      <button onClick={() => removeRows()}>Remove Rows</button>
+      <button onClick={() => removeColumns()}>Remove Columns</button>
       <button onClick={() => clearAll()}>Clear All</button>
       <button onClick={() => fillAll()}>Fill All</button>
       <select id="color" value={color} onChange={handleColorChange}>
