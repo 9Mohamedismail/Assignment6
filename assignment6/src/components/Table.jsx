@@ -6,6 +6,7 @@ function Table(props) {
   const [rows, setRows] = useState(0);
   const [columns, setColumns] = useState(0);
   const [color, setColor] = useState("transparent");
+  const [mouseDown, setmouseDown] = useState(false);
 
   const addRow = () => {
     setRows(rows + 1);
@@ -34,6 +35,24 @@ function Table(props) {
     setColor(e.target.value);
   };
 
+  const clickedCell = (e) => {
+    e.target.style.background = color;
+  };
+
+  const mouseHover = (e) => {
+    if (mouseDown) {
+      clickedCell(e);
+    }
+  }
+
+  const handleMouseDown = () => {
+    setmouseDown(true);
+  }
+
+  const handleMouseUp = () => {
+    setmouseDown(false);
+  }
+
   let table = [];
   for (let i = 0; i < rows; i++) {
     table.push(<TableRow key={i} columns={columns} color={color} />);
@@ -54,7 +73,7 @@ function Table(props) {
         <option value="pink">pink</option>
       </select>
       <table>
-        <div>{table}</div>
+        <tbody onClick={clickedCell} onMouseOver={mouseHover} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>{table}</tbody>
       </table>
     </div>
   );
