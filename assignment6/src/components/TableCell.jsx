@@ -1,15 +1,7 @@
-import React, {Component} from "react";
+import React from "react";
 
-class TableCell extends Component {
-    constructor(props) {
-        super(props);
-    }
-    state = {  }
-    render() { 
-        return (  
-            <h1>TableCell</h1>
-        );
-    }
+function TableCell(props) {
+  return <td className="cell">{props.children}</td>;
 }
- 
+
 export default TableCell;
