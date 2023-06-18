@@ -4,7 +4,7 @@ import TableRow from "./TableRow";
 
 function Table(props) {
   const [rows, setRows] = useState(0);
-  const [columns, setColumns] = useState(0);
+  const [columns, setColumns] = useState(1);
   const [color, setColor] = useState("transparent");
   const [mouseDown, setmouseDown] = useState(false);
 
@@ -46,16 +46,6 @@ function Table(props) {
     setColor(e.target.value);
   };
 
-  const clickedCell = (e) => {
-    e.target.style.background = color;
-  };
-
-  const mouseHover = (e) => {
-    if (mouseDown) {
-      clickedCell(e);
-    }
-  }
-
   const handleMouseDown = () => {
     setmouseDown(true);
   }
@@ -66,11 +56,21 @@ function Table(props) {
 
   let table = [];
   for (let i = 0; i < rows; i++) {
-    table.push(<TableRow key={i} columns={columns} color={color} />);
+    table.push(
+      <TableRow 
+        key={i} 
+        columns={columns} 
+        color={color} 
+        mouseDown={mouseDown}
+      />
+    );
   }
 
   return (
-    <div>
+    <div 
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+    >
       <div class="btn-group" role="group" aria-label="buttons">
         <button type="button" class="btn btn-primary" onClick={() => addRow()}>Add Rows</button>
         <button type="button" class="btn btn-primary" onClick={() => addColumn()}>Add Columns</button>
@@ -96,12 +96,7 @@ function Table(props) {
           </select>
       </div>
       <table>
-        <tbody
-          onClick={clickedCell}
-          onMouseOver={mouseHover}
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
-        >
+        <tbody>
           {table}
         </tbody>
       </table>
