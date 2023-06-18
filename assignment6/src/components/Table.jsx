@@ -26,20 +26,21 @@ function Table(props) {
       setColumns(columns - 1);
   }
 
+  
   const clearAll = () => {
     const cells = document.getElementsByClassName("cell");
     for (let i = 0; i < cells.length; i++) {
       cells[i].style.backgroundColor = "transparent";
     }
     setColor("transparent");
-  };
+  }; 
 
   const fillAll = () => {
     const cells = document.getElementsByClassName("cell");
     for (let i = 0; i < cells.length; i++) {
       cells[i].style.backgroundColor = color;
     }
-  };
+  }; 
 
   const handleColorChange = (e) => {
     setColor(e.target.value);
@@ -70,22 +71,39 @@ function Table(props) {
 
   return (
     <div>
-      <button onClick={() => addRow()}>Add Rows</button>
-      <button onClick={() => addColumn()}>Add Columns</button>
-      <button onClick={() => removeRows()}>Remove Rows</button>
-      <button onClick={() => removeColumns()}>Remove Columns</button>
-      <button onClick={() => clearAll()}>Clear All</button>
-      <button onClick={() => fillAll()}>Fill All</button>
-      <select id="color" value={color} onChange={handleColorChange}>
-        <option value="transparent">---</option>
-        <option value="black">black</option>
-        <option value="yellow">yellow</option>
-        <option value="green">green</option>
-        <option value="blue">blue</option>
-        <option value="pink">pink</option>
-      </select>
+      <div class="btn-group" role="group" aria-label="buttons">
+        <button type="button" class="btn btn-primary" onClick={() => addRow()}>Add Rows</button>
+        <button type="button" class="btn btn-primary" onClick={() => addColumn()}>Add Columns</button>
+        <button type="button" class="btn btn-warning" onClick={() => removeRows()}>Remove Rows</button>
+        <button type="button" class="btn btn-warning" onClick={() => removeColumns()}>Remove Columns</button>
+        <button type="button" class="btn btn-danger" style={{width: '150px'}} onClick={() => clearAll()}>Clear All</button>
+        <button type="button" class="btn btn-success" style={{width: '150px'}} onClick={() => fillAll()}>Fill All</button>
+
+
+          <select class="form-select ms-3" id="color" value={color} onChange={handleColorChange} aria-label="Select color">
+            <option value="transparent">--Select Color--</option>
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="pink">Pink</option>
+            <option value="maroon">Maroon</option>
+            <option value="crimson">Crimson</option>
+            <option value="purple">Purple</option>
+            <option value="orange">Orange</option>
+            <option value="grey">Grey</option>
+            <option value="brown">Brown</option>
+          </select>
+      </div>
       <table>
-        <tbody onClick={clickedCell} onMouseOver={mouseHover} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>{table}</tbody>
+        <tbody
+          onClick={clickedCell}
+          onMouseOver={mouseHover}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+        >
+          {table}
+        </tbody>
       </table>
     </div>
   );
